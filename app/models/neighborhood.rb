@@ -15,11 +15,11 @@ class Neighborhood < ActiveRecord::Base
          conflicts << reservation
         end
       end
-      
+
       if conflicts.empty?
         openings << listing
       end
-      
+
        conflicts.clear
      end
      openings
