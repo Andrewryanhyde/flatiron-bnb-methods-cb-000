@@ -47,5 +47,26 @@ class City < ActiveRecord::Base
     best.last
   end
 
+  def self.most_res
+    best = []
+    best_reservation_count = 0
+    City.all.each do |city|
+      city_reservation_count = 0
+
+
+      city.listings.each do |listing|
+        city_reservation_count += listing.reservations.count
+      end
+
+      if city_reservation_count > best_reservation_count
+        best_reservation_count = city_reservation_count
+        best << city
+      end
+
+    end
+    best.last
+
+  end
+
 
 end
