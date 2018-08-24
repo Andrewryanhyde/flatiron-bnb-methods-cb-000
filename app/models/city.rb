@@ -25,5 +25,27 @@ class City < ActiveRecord::Base
     openings
   end
 
+  def self.highest_ratio_res_to_listings
+    best = []
+    best_ratio = 0
+    City.all.each do |city|
+      reservation_count = 0
+      listings_count = city.listings.count
+
+      city.listings.each do |listing|
+        reservation_count += listing.reservations.count
+      end
+
+      city_ratio = reservation_count.to_f / listings_count.to_f
+
+      if city_ratio > best_ratio
+        best_ratio = city_ratio
+        best << city
+      end
+
+    end
+    best.last
+  end
+
 
 end
