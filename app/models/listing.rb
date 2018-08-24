@@ -31,17 +31,6 @@ end
 
 
 
-
-
- # validates :neighborhood, presence: true, if: {:neighborhood_object?, message: "Neighborhood can't be blank" }
-
- # def neighborhood_object?
- #
- #   neighborhood.class == Neighborhood
- # end
-
-
-
  def average_review_rating
    total = 0
    self.reviews.each do |review|
