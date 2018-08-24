@@ -7,7 +7,7 @@ class City < ActiveRecord::Base
     start_date = DateTime.parse(start_date).to_date
     end_date = DateTime.parse(end_date).to_date
 
-    openings = [] 
+    openings = []
     conflicts = []
 
     self.listings.each do |listing|
@@ -16,6 +16,13 @@ class City < ActiveRecord::Base
           conflicts << reservation
         end
       end
+
+      if conflicts.empty?
+        openings << listing
+      end
+      conflicts.clear
+    end
+    openings
   end
 
 
